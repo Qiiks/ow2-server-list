@@ -1,0 +1,126 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON structure
+        run: |
+          python -c "
+          import json, sys
+          with open('ow2-servers.json') as f:
+              data = json.load(f)
+
+          errors = []
+          warnings = []
+
+          # Check meta
+          meta = data.get('meta', {})
+          required_meta = ['version', 'last_updated', 'total_regions', 'total_cidrs', 'source']
+          for key in required_meta:
+              if key not in meta:
+                  errors.append(f'meta missing: {key}')
+
+          # Check regions
+          regions = data.get('regions', {})
+          if not regions:
+              errors.append('No regions found in ow2-servers.json')
+          
+          valid_regions = ['OW2-NA-East', 'OW2-NA-Central', 'OW2-NA-West', 'OW2-EU', 'OW2-Brazil', 'OW2-Singapore', 'OW2-Japan', 'OW2-Korea', 'OW2-Taiwan', 'OW2-Australia', 'OW2-MiddleEast']
+          for region, rdata in regions.items():
+              if region not in valid_regions:
+                  warnings.append(f'Unknown region: {region}')
+              if 'cidrs' not in rdata:
+                  errors.append(f'Region {region} missing cidrs field')
+              cidrs = rdata.get('cidrs', [])
+              for cidr in cidrs:
+                  if '/' not in cidr:
+                      errors.append(f'Invalid CIDR in {region}: {cidr}')
+
+          # Check community_discovered
+          cd = data.get('community_discovered', {})
+          if 'discovered' in cd:
+              for entry in cd['discovered']:
+                  if 'ip' not in entry or 'cidr' not in entry or 'region' not in entry:
+                      errors.append(f'Malformed community_discovered entry: {entry}')
+
+          # Summary
+          print(f'Meta: OK ({meta.get(\"total_regions\")} regions, {meta.get(\"total_cidrs\")} CIDRs)')
+          print(f'Regions: {len(regions)} regions')
+          print(f'Community discovered: {len(cd.get(\"discovered\", []))} IPs')
+
+          if warnings:
+              print()
+              for w in warnings:
+                  print(f'WARNING: {w}')
+          if errors:
+              print()
+              for e in errors:
+                  print(f'ERROR: {e}')
+              sys.exit(1)
+          else:
+              print()
+              print('All checks passed.')
+          "
+
+      - name: Check for duplicate CIDRs
+        run: |
+          python -c "
+          import json
+          with open('ow2-servers.json') as f:
+              data = json.load(f)
+
+          all_cidrs = {}
+          for region, rdata in data.get('regions', {}).items():
+              for cidr in rdata.get('cidrs', []):
+                  all_cidrs.setdefault(cidr, []).append(region)
+
+          duplicates = {c: r for c, r in all_cidrs.items() if len(r) > 1}
+          if duplicates:
+              print(f'WARNING: {len(duplicates)} duplicate CIDRs found:')
+              for cidr, regions in list(duplicates.items())[:10]:
+                  print(f'  {cidr} in {regions}')
+          else:
+              print('No duplicate CIDRs found.')
+          "
+
+  validate-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Syntax check scripts
+        run: |
+          python -m py_compile fetch_foryverx.py merge_discovered.py generate_profile.py
+          echo "All Python scripts are syntactically valid."
+
+      - name: Test fetch_foryverx.py --help
+        run: python fetch_foryverx.py --help | head -5
+
+      - name: Test merge_discovered.py --help
+        run: python merge_discovered.py --help | head -5
+
+      - name: Test generate_profile.py --help
+        run: python generate_profile.py --help | head -5
