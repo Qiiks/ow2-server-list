@@ -152,7 +152,7 @@ python generate_profile.py --auth-direct
 
 The `community_discovered` section contains IPs found via live OW2 game traffic capture. These are AS57976 (Blizzard Entertainment) IPs that aren't in the GCP/AWS ranges covered by foryVERX.
 
-If you capture new IPs using the [OW2 Connection Logger](https://github.com/YOUR_USERNAME/ow2-server-list/tree/main/tools#ow2-connection-logger), merge them here so others benefit.
+If you capture new IPs using the [OW2 Connection Logger](https://github.com/Qiiks/ow2-server-list), merge them here so others benefit.
 
 ## Data Sources
 
