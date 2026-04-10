@@ -14,6 +14,7 @@ Usage:
 Output: Updated ow2-servers.json (in same directory as script)
 """
 
+import ipaddress
 import json
 import urllib.request
 import ssl
@@ -39,6 +40,16 @@ REGION_MAP = {
 GITHUB_RAW = "https://raw.githubusercontent.com/foryVERX/Overwatch-Server-Selector/main/ip_lists"
 
 
+def range_to_cidrs(start_ip: str, end_ip: str) -> list[str]:
+    """Convert an IP range (start-end) to a list of CIDR notation networks."""
+    try:
+        start = ipaddress.ip_address(start_ip)
+        end = ipaddress.ip_address(end_ip)
+        return [str(net) for net in ipaddress.summarize_address_range(start, end)]
+    except ValueError:
+        return [f"{start_ip}/32"]  # Fallback: treat as single IP
+
+
 def fetch_region(region_name: str, repo_suffix: str) -> list[str]:
     """Fetch CIDR list for one region from foryVERX repo."""
     url = f"{GITHUB_RAW}/Ip_ranges_{repo_suffix}.txt"
@@ -49,7 +60,16 @@ def fetch_region(region_name: str, repo_suffix: str) -> list[str]:
         cidrs = []
         for line in content.replace("\r", "").split("\n"):
             line = line.strip()
-            if line and not line.startswith("#"):
+            if not line or line.startswith("#"):
+                continue
+            # foryVERX uses dash notation: "35.236.192.0-35.236.255.255"
+            if "-" in line:
+                parts = line.split("-")
+                if len(parts) == 2:
+                    cidrs.extend(range_to_cidrs(parts[0].strip(), parts[1].strip()))
+                else:
+                    cidrs.append(line)  # Not a range, pass through
+            else:
                 cidrs.append(line)
         return list(dict.fromkeys(cidrs))  # Deduplicate, preserve order
     except Exception as e:
