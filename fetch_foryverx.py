@@ -58,7 +58,7 @@ def fetch_region(region_name: str, repo_suffix: str) -> list[str]:
         with urllib.request.urlopen(url, timeout=15, context=ctx) as r:
             content = r.read().decode("utf-8")
         cidrs = []
-        for line in content.replace("\r", "").split("\n"):
+        for line in content.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
