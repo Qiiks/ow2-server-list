@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "last_updated": "2026-04-10T13:08:58Z",
+    "last_updated": "2026-04-10T14:03:54Z",
     "description": "Overwatch 2 game server IP ranges by region",
     "source": "foryVERX/Overwatch-Server-Selector + community contributions",
     "format_version": "1.0",
@@ -660,44 +660,15 @@
     }
   },
   "community_discovered": {
-    "description": "IPs discovered via live OW2 game traffic capture (AS57976 Blizzard infrastructure)",
-    "last_updated": "2026-04-10T13:08:58Z",
-    "discovered_count": 7,
+    "description": "IPs discovered via live OW2 game traffic capture",
+    "discovered_count": 1,
     "discovered": [
       {
-        "ip": "85.236.97.159",
-        "cidr": "85.236.97.159/32",
-        "region": "OW2-NA-East"
-      },
-      {
-        "ip": "85.236.97.186",
-        "cidr": "85.236.97.186/32",
-        "region": "OW2-NA-East"
-      },
-      {
-        "ip": "85.236.97.86",
-        "cidr": "85.236.97.86/32",
-        "region": "OW2-NA-East"
-      },
-      {
-        "ip": "137.221.68.103",
-        "cidr": "137.221.68.103/32",
-        "region": "OW2-NA-West"
-      },
-      {
-        "ip": "137.221.78.99",
-        "cidr": "137.221.78.99/32",
-        "region": "OW2-EU"
-      },
-      {
-        "ip": "137.221.80.99",
-        "cidr": "137.221.80.99/32",
-        "region": "OW2-EU"
-      },
-      {
-        "ip": "137.221.85.103",
-        "cidr": "137.221.85.103/32",
-        "region": "OW2-Australia"
+        "ip": "137.221.68.97",
+        "cidr": "137.221.68.97/32",
+        "region": "OW2-NA-West",
+        "confirmed_via": "AS57976 traffic volume analysis",
+        "date": "2026-04-10"
       }
     ]
   }
