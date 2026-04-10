@@ -139,14 +139,14 @@ python generate_profile.py --auth-direct
 | `OW2-NA-East` | Virginia / IAD1 | OW2-NA-East |
 | `OW2-NA-Central` | Texas / ORD1 | OW2-NA-Central |
 | `OW2-NA-West` | Los Angeles / LAX1 | OW2-NA-West |
-| `OW2-EU` | Europe (AMS1, FRA1) | OW2-EU |
+| `OW2-EU` | Europe (AMS1, FRA1, GEN1) | OW2-EU |
 | `OW2-Brazil` | Sao Paulo / GBR1 | OW2-Brazil |
 | `OW2-Singapore` | Singapore / GSG1 | OW2-Singapore |
 | `OW2-Japan` | Tokyo | OW2-Japan |
 | `OW2-Korea` | Seoul / ICN1 | OW2-Korea |
 | `OW2-Taiwan` | Taipei / TPE1 | OW2-Taiwan |
 | `OW2-Australia` | Sydney / SYD2 | OW2-Australia |
-| `OW2-MiddleEast` | Bahrain / MES1 | OW2-MiddleEast |
+| `OW2-MiddleEast` | Bahrain / MES1, GMEC2 | OW2-MiddleEast |
 
 ## Community Discovery
 
