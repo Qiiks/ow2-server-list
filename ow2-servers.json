@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "last_updated": "2026-04-10T14:03:54Z",
+    "last_updated": "2026-04-13T02:30:04Z",
     "description": "Overwatch 2 game server IP ranges by region",
     "source": "foryVERX/Overwatch-Server-Selector + community contributions",
     "format_version": "1.0",
@@ -12,7 +12,7 @@
     "OW2-NA-East": {
       "description": "NA East",
       "source": "foryVERX+community",
-      "last_fetched": "2026-04-10T13:08:56Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "34.124.0.0/21",
         "35.236.192.0/18",
@@ -92,7 +92,7 @@
     "OW2-NA-Central": {
       "description": "NA Central",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:56Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "24.105.40.0/21",
         "64.224.0.0/21",
@@ -188,7 +188,7 @@
     "OW2-NA-West": {
       "description": "NA West",
       "source": "foryVERX+community",
-      "last_fetched": "2026-04-10T13:08:56Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "64.224.24.0/23",
         "24.105.8.0/21",
@@ -254,7 +254,7 @@
     "OW2-EU": {
       "description": "EU",
       "source": "foryVERX+community",
-      "last_fetched": "2026-04-10T13:08:57Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "64.224.26.0/23",
         "104.155.0.0/17",
@@ -430,7 +430,7 @@
     "OW2-Brazil": {
       "description": "Brazil",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:57Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "34.95.128.0/17",
         "34.104.80.0/21",
@@ -455,7 +455,7 @@
     "OW2-Singapore": {
       "description": "Singapore",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:57Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "34.124.0.0/16",
         "34.124.42.0/23",
@@ -504,7 +504,7 @@
     "OW2-Japan": {
       "description": "Japan",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:57Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "34.85.0.0/17",
         "34.84.0.0/16",
@@ -542,7 +542,7 @@
     "OW2-Korea": {
       "description": "Korea",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:57Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "202.9.66.0/23",
         "34.64.0.0/16",
@@ -571,7 +571,7 @@
     "OW2-Taiwan": {
       "description": "Taiwan",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:58Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "5.42.160.0/24",
         "35.221.128.0/17",
@@ -605,7 +605,7 @@
     "OW2-Australia": {
       "description": "Australia",
       "source": "foryVERX+community",
-      "last_fetched": "2026-04-10T13:08:58Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "158.115.196.0/23",
         "37.244.42.0/24",
@@ -638,7 +638,7 @@
     "OW2-MiddleEast": {
       "description": "MiddleEast",
       "source": "foryVERX",
-      "last_fetched": "2026-04-10T13:08:58Z",
+      "last_fetched": "2026-04-13T02:30:04Z",
       "cidrs": [
         "157.175.0.0/16",
         "15.185.0.0/16",
